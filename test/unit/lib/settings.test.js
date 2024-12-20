@@ -146,7 +146,7 @@ describe('Settings Tests', () => {
       beforeEach(() => {
         stubConfig = {
           repoConfigs: {
-            'repository.yml': { repository: { name: 'test-repository-yml', config: 'config1' } }
+            'repository.yml': { repository: { name: 'repository', config: 'config1' } }
           }
         }
       })
@@ -165,7 +165,7 @@ describe('Settings Tests', () => {
       beforeEach(() => {
         stubConfig = {
           repoConfigs: {
-            'repository.yml': { repository: { name: 'test-repository-yml', config: 'config1' } }
+            'repository.yaml': { repository: { name: 'repository', config: 'config1' } }
           }
         }
       })
