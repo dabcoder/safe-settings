@@ -140,4 +140,44 @@ describe('Settings Tests', () => {
       })
     })
   }) // restrictedRepos
+
+  describe('getRepoOverrideConfig', () => {
+    describe('repository defined in a file using the .yaml extension', () => {
+      beforeEach(() => {
+        stubConfig = {
+          repoConfigs: {
+            'repository.yml': { repository: { name: 'test-repository-yml', config: 'config1' } }
+          }
+        }
+      })
+
+      it('Picks up a repository defined in file using the .yaml extension', () => {
+        const settings = createSettings(stubConfig)
+        settings.getRepoConfigs(stubConfig.repoConfigs['repository.yaml'].repository.name)
+
+        expect(typeof repoConfig).toBe('object')
+        expect(repoConfig).not.toBeNull()
+        expect(Object.keys(repoConfig).length).toBeGreaterThan(0)
+      })
+    })
+
+    describe('repository defined in a file using the .yml extension', () => {
+      beforeEach(() => {
+        stubConfig = {
+          repoConfigs: {
+            'repository.yml': { repository: { name: 'test-repository-yml', config: 'config1' } }
+          }
+        }
+      })
+
+      it('Picks up a repository defined in file using the .yml extension', () => {
+        const settings = createSettings(stubConfig)
+        const repoConfig = settings.getRepoConfigs(stubConfig.repoConfigs['repository.yml'].repository.name)
+
+        expect(typeof repoConfig).toBe('object')
+        expect(repoConfig).not.toBeNull()
+        expect(Object.keys(repoConfig).length).toBeGreaterThan(0)
+      })
+    })
+  }) // repoOverrideConfig
 }) // Settings Tests
