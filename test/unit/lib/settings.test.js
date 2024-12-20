@@ -153,7 +153,7 @@ describe('Settings Tests', () => {
 
       it('Picks up a repository defined in file using the .yaml extension', () => {
         const settings = createSettings(stubConfig)
-        settings.getRepoConfigs(stubConfig.repoConfigs['repository.yaml'].repository.name)
+        settings.getRepoOverrideConfig(stubConfig.repoConfigs['repository.yaml'].repository.name)
 
         expect(typeof repoConfig).toBe('object')
         expect(repoConfig).not.toBeNull()
@@ -172,7 +172,7 @@ describe('Settings Tests', () => {
 
       it('Picks up a repository defined in file using the .yml extension', () => {
         const settings = createSettings(stubConfig)
-        const repoConfig = settings.getRepoConfigs(stubConfig.repoConfigs['repository.yml'].repository.name)
+        const repoConfig = settings.getRepoOverrideConfig(stubConfig.repoConfigs['repository.yml'].repository.name)
 
         expect(typeof repoConfig).toBe('object')
         expect(repoConfig).not.toBeNull()
