@@ -30,7 +30,6 @@
 > [!NOTE]
 > The `suborg` and `repo` level settings directory structure cannot be customized.
 >
-> Settings files must have a `.yml` extension only. For now, the `.yaml` extension is ignored.
 
 
 ## How it works
@@ -290,7 +289,21 @@ The following can be configured:
 - `Rulesets`
 - `Environments` - wait timer, required reviewers, prevent self review, protected branches deployment branch policy, custom deployment branch policy, variables, deployment protection rules
 
-It is possible to provide an `include` or `exclude` settings to restrict the `collaborators`, `teams`, `labels` to a list of repos or exclude a set of repos for a collaborator.
+> [!important]
+> It is possible to provide an `include` or `exclude` settings to restrict the `collaborators`, `teams`, `labels` to a list of repos or exclude a set of repos for a collaborator. 
+> The include/exclude pattern can also be for glob. For e.g.:
+```
+teams:
+  - name: Myteam-admins
+    permission: admin
+  - name: Myteam-developers
+    permission: push
+  - name: Other-team
+    permission: push
+    include:
+      - '*-config'
+```
+> Will only add `Other-team` to only `*-config` repos
 
 See [`docs/sample-settings/settings.yml`](docs/sample-settings/settings.yml) for a sample settings file.
 
@@ -368,7 +381,7 @@ You can pass environment variables; the easiest way to do it is via a `.env` fil
 
 ## How to use
 
-1. Create an `admin` repo (or an alternative of your choosing) within your organization. Remember to set `CONFIG_REPO` if you choose something other than `admin`. See [Environment variables](#environment-variables) for more details.
+1. Create an `admin` repo (or an alternative of your choosing) within your organization. Remember to set `ADMIN_REPO` if you choose something other than `admin`. See [Environment variables](#environment-variables) for more details.
 
 2. Add the settings for the `org`, `suborgs`, and `repos`. Sample files can be found [here](docs/sample-settings).
 
